@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Diploma.Classes;
+using System.Collections.Generic;
 
 namespace Diploma
 {
@@ -15,12 +16,50 @@ namespace Diploma
             InitializeComponent();
         }
 
+        //class obj { }
+        //public List<obj> sList = new List<obj>();
+
         private async void Form1_Load(object sender, EventArgs e)
         {
-            SQLConnectionInfo.SqlConnection.Open();
-            SQLConnectionInfo.SqlCommand = new SqlCommand("SELECT * FROM [Events]", SQLConnectionInfo.SqlConnection);
-
+            
+            //Creating some initial data 
             SqlDataReader sqlReader = null;
+            Events Event = new Events();
+            Thematics theme = new Thematics();
+            Congratulations congratulation = new Congratulations();
+
+            //Fill ListofEvents
+            List<Events> ListofEvents = Event.Fill();
+
+            //Fill ListOfThematics
+            List<Thematics> ListofThematics = theme.Fill();
+
+            //Fill ListOfCongratulations
+            List<Congratulations> ListOfCongratulations = congratulation.Fill();
+
+
+            try
+            {
+                Button SQLButton;
+                int y = 50;
+                foreach (var i in ListofThematics)
+                {
+                    SQLButton = new Button
+                    {
+                        Size = new Size(330, 60),
+                        Location = new Point(40, y),
+                        Text = i.GetDescription()
+                    };
+                    Controls.Add(SQLButton);
+                    y += 95;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            /*
             try
             {
                 Button SQLButton;
@@ -47,6 +86,7 @@ namespace Diploma
                 if (sqlReader != null)
                     sqlReader.Close();
             }
+            */
 
         }
 
