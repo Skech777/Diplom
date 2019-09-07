@@ -10,6 +10,7 @@ namespace Diploma
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             AutoScroll = true;
@@ -21,13 +22,13 @@ namespace Diploma
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            
+
             //Creating some initial data 
             SqlDataReader sqlReader = null;
             Events Event = new Events();
             Thematics theme = new Thematics();
             Congratulations congratulation = new Congratulations();
-
+            SimpleBDObject EventBD = new SimpleBDObject(40,50,60,330, this);
             //Fill ListofEvents
             List<Events> ListofEvents = Event.Fill();
 
@@ -37,65 +38,9 @@ namespace Diploma
             //Fill ListOfCongratulations
             List<Congratulations> ListOfCongratulations = congratulation.Fill();
 
-
-            try
-            {
-                Button SQLButton;
-                int y = 50;
-                foreach (var i in ListofThematics)
-                {
-                    SQLButton = new Button
-                    {
-                        Size = new Size(330, 60),
-                        Location = new Point(40, y),
-                        Text = i.GetDescription()
-                    };
-                    Controls.Add(SQLButton);
-                    y += 95;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //First eelect when form has alreadde loaded
+            EventBD.Select(ListofEvents, EventBD);
             
-            /*
-            try
-            {
-                Button SQLButton;
-                int y = 50;
-                sqlReader = await SQLConnectionInfo.SqlCommand.ExecuteReaderAsync();
-                while (await sqlReader.ReadAsync())
-                {
-                    SQLButton = new Button
-                    {
-                        Size = new Size(330, 60),
-                        Location = new Point(40, y),
-                        Text = sqlReader["Name"].ToString()
-                    };
-                    Controls.Add(SQLButton);
-                    y += 95;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (sqlReader != null)
-                    sqlReader.Close();
-            }
-            */
-
-        }
-
-        private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (SQLConnectionInfo.SqlConnection != null && SQLConnectionInfo.SqlConnection.State != ConnectionState.Closed)
-            {
-                SQLConnectionInfo.SqlConnection.Close();
-            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -104,7 +49,17 @@ namespace Diploma
             {
                 SQLConnectionInfo.SqlConnection.Close();
             }
+            
+
         }
 
+        private void ВыходToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (SQLConnectionInfo.SqlConnection != null && SQLConnectionInfo.SqlConnection.State != ConnectionState.Closed)
+            {
+                SQLConnectionInfo.SqlConnection.Close();
+            }
+            this.Close();
+        }
     }
 }

@@ -7,14 +7,13 @@ using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
 using System.Data.SqlClient;
-using Diploma.Classes;
 
 namespace Diploma.Classes
 {
     public class SimpleBDObject
     {
 		//MainForm
-		public Form MainForm;	// не забудь кинуть сюда ссылку
+		public Form MainForm;	
 
         // Location
         public int X { get; private set; }
@@ -24,38 +23,40 @@ namespace Diploma.Classes
         public int Height { get; private set; }
         public int Width { get; private set; }
 
-        public SimpleBDObject(int x, int y, int height, int width)
+        public SimpleBDObject(int x, int y, int height, int width, Form1 _mainForm)
         {
             this.X = x;
             this.Y = y;
             this.Height = height;
             this.Width = width;
+            this.MainForm = _mainForm;
             Console.WriteLine("X="+ this.X + "; Y="+ this.Y +"; Height="+ this.Height+"; Width="+ this.Width);
         }
         
 
         public virtual void Select(int index)
         {
-            Console.WriteLine("Performing base class selecting all");
+            Console.WriteLine("Performing base class selecting all with index");
         }
 
-        public virtual void Select(List<Congratulations> List)
+        public virtual void Select(List<Events> List, SimpleBDObject @object)
         {
             
             try
             {
                 Button SQLButton;
-                int y = 50;
                 foreach (var i in List)
                 {
                     SQLButton = new Button
                     {
-                        Size = new Size(330, 60),
-                        Location = new Point(40, y),
-                        Text = i.GetText() + "\n" + i.GetAuthor()
+                        Size = new Size(@object.Width, @object.Height),
+                        Location = new Point(@object.X, @object.Y),
+                        Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular,
+                        System.Drawing.GraphicsUnit.Point, ((byte)(204))),
+                        Text = i.GetName() 
                     };
                     MainForm.Controls.Add(SQLButton);
-                    y += 95;
+                    Y += 95;
                 }
             }
             catch (Exception ex)

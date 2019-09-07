@@ -22,7 +22,7 @@ namespace Diploma.Classes
         public string GetName() => Name;
 
         public List<Events> Fill()
-        {
+         {
             List<Events> ListofEvents = new List<Events>();
             SQLConnectionInfo.SqlConnection.Open();
             SQLConnectionInfo.SqlCommand = new SqlCommand("SELECT * FROM [Events]", SQLConnectionInfo.SqlConnection);
