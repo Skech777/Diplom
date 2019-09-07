@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Diploma.Classes
 {
-    static class SQLConnectionInfo
+    public static class SQLConnectionInfo
     {
 
         static public String StringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kloch\source\repos\Diploma\Diploma\Database1.mdf;Integrated Security=True";

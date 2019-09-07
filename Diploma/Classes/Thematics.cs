@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Diploma.Classes
 {
-    class Thematics
+    public  class Thematics
     {
         private int Id;
         private string Description;

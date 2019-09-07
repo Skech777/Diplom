@@ -13,6 +13,9 @@ namespace Diploma.Classes
 {
     public class SimpleBDObject
     {
+		//MainForm
+		public Form MainForm;	// не забудь кинуть сюда ссылку
+
         // Location
         public int X { get; private set; }
         public int Y { get; private set; }
@@ -29,12 +32,14 @@ namespace Diploma.Classes
             this.Width = width;
             Console.WriteLine("X="+ this.X + "; Y="+ this.Y +"; Height="+ this.Height+"; Width="+ this.Width);
         }
-        /*
+        
+
         public virtual void Select(int index)
         {
             Console.WriteLine("Performing base class selecting all");
         }
-        public virtual void Select<T>(List<T> List)
+
+        public virtual void Select(List<Congratulations> List)
         {
             
             try
@@ -49,7 +54,7 @@ namespace Diploma.Classes
                         Location = new Point(40, y),
                         Text = i.GetText() + "\n" + i.GetAuthor()
                     };
-                    Controls.Add(SQLButton);
+                    MainForm.Controls.Add(SQLButton);
                     y += 95;
                 }
             }
@@ -58,14 +63,16 @@ namespace Diploma.Classes
                 MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public virtual void Find(string symbols)
         {
             Console.WriteLine("Performing base class finding by symbols");
         }
+
         public virtual void Clear()
         {
             Console.WriteLine("Performing base class clearing display");
         }
-        */
+        
     }
 }
