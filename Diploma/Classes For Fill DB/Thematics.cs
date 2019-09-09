@@ -23,6 +23,8 @@ namespace Diploma.Classes
 
         public int GetId() => Id;
         public string GetDescription() => Description;
+        public int GetEventId() => EventId;
+
 
         public List<Thematics> Fill()
         {
