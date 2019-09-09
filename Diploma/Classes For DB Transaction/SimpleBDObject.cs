@@ -24,7 +24,7 @@ namespace Diploma.Classes_For_DB_Transaction
         public int Height { get; private set; }
         public int Width { get; private set; }
 
-        
+        public static EventHandler Click;
 
         public SimpleBDObject() { }
         public SimpleBDObject(int x, int y, int height, int width, Form1 _mainForm)
@@ -56,7 +56,7 @@ namespace Diploma.Classes_For_DB_Transaction
             Console.WriteLine("Performing base class finding by symbols");
         }
 
-        public virtual void Clear()
+        public void Clear()
         {
             for (int i = 0; i < MainForm.Controls.Count; i++)
             {

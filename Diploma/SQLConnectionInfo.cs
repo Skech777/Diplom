@@ -11,7 +11,7 @@ namespace Diploma.Classes
     public static class SQLConnectionInfo
     {
 
-        static public String StringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kloch\Desktop\Diploma\Diploma\Database1.mdf;Integrated Security=True";
+        static public String StringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kloch\source\repos\Diploma\Diploma\Database1.mdf;Integrated Security=True";
         static public SqlConnection @SqlConnection;
         static public SqlCommand @SqlCommand;
 

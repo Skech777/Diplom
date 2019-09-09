@@ -40,6 +40,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавлениеПоздравленияToolStripMenuItem,
@@ -89,10 +90,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(508, 9);
+            this.label1.Location = new System.Drawing.Point(487, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 45);
+            this.label1.Size = new System.Drawing.Size(59, 44);
             this.label1.TabIndex = 2;
             this.label1.Text = "<-";
             this.label1.Click += new System.EventHandler(this.Label1_Click);
@@ -101,6 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(581, 951);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);

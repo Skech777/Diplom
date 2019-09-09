@@ -16,7 +16,6 @@ namespace Diploma.Classes_For_DB_Transaction
         private readonly Font Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204);
         public EventTransaction(int x, int y, int height, int width, Form1 _mainForm) : base(x, y, height, width, _mainForm) { }
 
-        public static EventHandler Click;
         
         public override void Select(List<Events> List, EventTransaction @object)
         {

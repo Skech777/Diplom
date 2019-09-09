@@ -100,12 +100,14 @@ namespace Diploma
             {
                 ThemeBD.Clear();
                 ThemeBD.Select(ListofThematics, ThemeBD, indexOfEvent);
+                indexOfTheme = 0;
 
             }
             else if (indexOfEvent != 0)
             {
                 ThemeBD.Clear();
                 EventBD.Select(ListofEvents, EventBD);
+                indexOfEvent = 0;
             }
         }
     }
