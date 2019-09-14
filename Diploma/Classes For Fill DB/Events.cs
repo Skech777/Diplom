@@ -9,8 +9,8 @@ namespace Diploma.Classes
 {
     public class Events
     {
-        private int Id;
-        private string Name;
+        public int Id;
+        public string Name;
 
         public Events() { }
         public Events(int Id, string Name)

@@ -111,6 +111,17 @@
     <None Include="bin\Debug\4.txt" />
     <None Include="bin\Debug\5.txt" />
     <None Include="bin\Debug\6.txt" />
+    <None Include="bin\Debug\7.txt" />
+    <None Include="bin\Debug\8.txt" />
+    <None Include="bin\Debug\9.txt" />
+    <None Include="bin\Debug\10.txt" />
+    <None Include="bin\Debug\11.txt" />
+    <None Include="bin\Debug\12.txt" />
+    <None Include="bin\Debug\13.txt" />
+    <None Include="bin\Debug\14.txt" />
+    <None Include="bin\Debug\15.txt" />
+    <None Include="bin\Debug\141.txt" />
+    <None Include="bin\Debug\151.txt" />
     <Content Include="Database1.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

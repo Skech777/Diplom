@@ -9,10 +9,10 @@ namespace Diploma.Classes
 {
     public class Congratulations
     {
-        private int Id;
-        private string Text;
-        private string Author;
-        private int ThematicId;
+        public int Id;
+        public string Text;
+        public string Author;
+        public int ThematicId;
 
         public Congratulations() { }
         public Congratulations(int Id, string Text, string Author, int ThematicId)
@@ -41,7 +41,7 @@ namespace Diploma.Classes
             {
                 string CongratulationId = sqlReader["CongratulationId"].ToString();
                 string SQLText = sqlReader["Text"].ToString();
-                string Text = (string)Properties.Resources.ResourceManager.GetObject(@"_" + SQLText[0]);
+                string Text = (string)Properties.Resources.ResourceManager.GetObject(@"_" + SQLText);
                 string Author = sqlReader["Author"].ToString();
                 string ThematicId = sqlReader["ThematicId"].ToString();
 

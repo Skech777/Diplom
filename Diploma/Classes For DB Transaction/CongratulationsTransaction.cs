@@ -32,7 +32,7 @@ namespace Diploma.Classes_For_DB_Transaction
                         TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
                         Location = new Point(@object.X, Y),
                         Font = @object.Font,
-                        Text = i.GetText(),                        
+                        Text = i.GetText()+"\n\n"+ i.GetAuthor(),                        
                         Tag = i
                     };
                     MainForm.Controls.Add(SQLLabel);

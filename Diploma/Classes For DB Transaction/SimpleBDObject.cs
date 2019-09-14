@@ -58,45 +58,9 @@ namespace Diploma.Classes_For_DB_Transaction
             {
                 Button SQLButton;
 
-                listOfThematics = listOfThematics.FindAll(x => x.GetDescription() == symbols);
-                foreach (var i in listOfThematics)
-                {
-                    List<Events> Event = listOfEvents.FindAll(p=> p.GetId() == i.GetEventId());
-                    string eventId = default;
-                    foreach (var item in Event)
-                    {
-                        eventId = item.GetName();
-                    }
-                    SQLButton = new Button
-                    {
-                        Size = new Size(@theme.Width, @theme.Height),
-                        Location = new Point(@theme.X, Y),
-                        Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 204),
-                        Text = i.GetDescription() + "\n"+ eventId,
-                        Tag = i
-                    };
-                    theme.MainForm.Controls.Add(SQLButton);
-                    Y += 95;
-                    SQLButton.Click += Click;
-                }
-
-                listOfEvents = listOfEvents.FindAll(p => p.GetName() == symbols);
-                foreach (var i in listOfEvents)
-                {
-                    SQLButton = new Button
-                    {
-                        Size = new Size(@theme.Width, @theme.Height),
-                        Location = new Point(@theme.X, Y),
-                        Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204),
-                        Text = i.GetName(),
-                        Tag = i
-                    };
-                    theme.MainForm.Controls.Add(SQLButton);
-                    Y += 95;
-                    SQLButton.Click += Click;
-                }
-                
-                if (listOfEvents.Count() == 0 && listOfThematics.Count() == 0)
+                listOfThematics = listOfThematics.FindAll(x => x.Description.ToLower().Contains(symbols));
+                listOfEvents = listOfEvents.FindAll(x => x.Name.ToLower().Contains(symbols));
+                if (listOfEvents.Count() == 0 && listOfThematics.Count() == 0 || symbols =="")
                 {
                     Label SQLLabel;
                     SQLLabel = new Label
@@ -104,11 +68,49 @@ namespace Diploma.Classes_For_DB_Transaction
                         Size = new Size(@theme.Width, @theme.Height),
                         Location = new Point(@theme.X, Y),
                         Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
                         Text = "На ваш запрос не нашлось результата"
                     };
                     theme.MainForm.Controls.Add(SQLLabel);
                 }
+                else
+                {
+                    foreach (var i in listOfThematics)
+                    {
+                        List<Events> Event = listOfEvents.FindAll(p => p.GetId() == i.GetEventId());
+                        string eventId = default;
+                        foreach (var item in Event)
+                        {
+                            eventId = item.GetName();
+                        }
+                        SQLButton = new Button
+                        {
+                            Size = new Size(@theme.Width, @theme.Height),
+                            Location = new Point(@theme.X, Y),
+                            Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                            Text = i.GetDescription() + "\n" + eventId,
+                            Tag = i
+                        };
+                        theme.MainForm.Controls.Add(SQLButton);
+                        Y += 95;
+                        SQLButton.Click += Click;
+                    }
 
+                    foreach (var i in listOfEvents)
+                    {
+                        SQLButton = new Button
+                        {
+                            Size = new Size(@theme.Width, @theme.Height),
+                            Location = new Point(@theme.X, Y),
+                            Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                            Text = i.GetName(),
+                            Tag = i
+                        };
+                        theme.MainForm.Controls.Add(SQLButton);
+                        Y += 95;
+                        SQLButton.Click += Click;
+                    }
+                }
             }
             catch (Exception ex)
             {

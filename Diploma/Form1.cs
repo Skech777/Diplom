@@ -126,5 +126,10 @@ namespace Diploma
             SimpleBDObject Find = new SimpleBDObject();
             Find.Find(textFromSearch, ListofEvents, ThemeBD, ListofThematics);
         }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
