@@ -11,7 +11,7 @@ namespace Diploma.Classes_For_DB_Transaction
 {
     public class CongratulationTransaction : SimpleBDObject
     {
-        private readonly Font Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204);
+        private readonly Font Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 204);
         public CongratulationTransaction(int x, int y, int height, int width, Form1 _mainForm) : base(x, y, height, width, _mainForm) { }
 
 
@@ -21,21 +21,22 @@ namespace Diploma.Classes_For_DB_Transaction
             int Y = @object.Y;
             try
             {
-                Button SQLButton;
+                Label SQLLabel;
                 List = List.FindAll(p => p.GetThematicId() == indexOfSelect);
+
                 foreach (var i in List)
                 {
-                    SQLButton = new Button
+                    SQLLabel = new Label
                     {
-                        Size = new Size(@object.Width, @object.Height),
+                        AutoSize = true,
+                        TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
                         Location = new Point(@object.X, Y),
                         Font = @object.Font,
-                        Text = i.GetText(),
+                        Text = i.GetText(),                        
                         Tag = i
                     };
-                    MainForm.Controls.Add(SQLButton);
-                    Y += 95;
-                    SQLButton.Click += Click;
+                    MainForm.Controls.Add(SQLLabel);
+                    Y += SQLLabel.Size.Height+20;
                 }
 
             }

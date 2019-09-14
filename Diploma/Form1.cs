@@ -25,13 +25,13 @@ namespace Diploma
         List<Thematics> ListofThematics;
         List<Congratulations> ListOfCongratulations;
 
+
         int indexOfEvent;
         int indexOfTheme;
         public Form1()
         {
             AutoScroll = true;
             InitializeComponent();
-
             EventTransaction.Click = SQLButton_Click;
         }
 
@@ -62,9 +62,9 @@ namespace Diploma
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            EventBD = new EventTransaction(40, 50, 60, 330, this);
-            ThemeBD = new ThematicTransaction(40, 50, 60, 330, this);
-            CongratulationBD = new CongratulationTransaction(40, 50, 60, 330, this);
+            EventBD = new EventTransaction(50, 50, 60, 330, this);
+            ThemeBD = new ThematicTransaction(50, 50, 60, 330, this);
+            CongratulationBD = new CongratulationTransaction(50, 50, 300, 330, this);
             //Fill ListofEvents
             ListofEvents = Event.Fill();
             //Fill ListOfThematics
@@ -94,9 +94,9 @@ namespace Diploma
         }
 
 
-        private void Label1_Click(object sender, EventArgs e)
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
-            if (indexOfTheme != 0)
+            if (indexOfTheme != 0 && indexOfEvent != 0)
             {
                 ThemeBD.Clear();
                 ThemeBD.Select(ListofThematics, ThemeBD, indexOfEvent);
@@ -109,6 +109,22 @@ namespace Diploma
                 EventBD.Select(ListofEvents, EventBD);
                 indexOfEvent = 0;
             }
+            else
+            {
+                ThemeBD.Clear();
+                EventBD.Select(ListofEvents, EventBD);
+                indexOfEvent = 0;
+                indexOfTheme = 0;
+            }
+
+        }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+            string textFromSearch = textBox1.Text;
+            ThemeBD.Clear();
+            SimpleBDObject Find = new SimpleBDObject();
+            Find.Find(textFromSearch, ListofEvents, ThemeBD, ListofThematics);
         }
     }
 }

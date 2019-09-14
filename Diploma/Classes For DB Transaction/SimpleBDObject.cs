@@ -51,9 +51,69 @@ namespace Diploma.Classes_For_DB_Transaction
             Console.WriteLine("Performing base class selecting all info from Events by loading form");
         }        
 
-        public virtual void Find(string symbols)
+        public virtual void Find(string symbols, List<Events> listOfEvents, ThematicTransaction @theme, List<Thematics> listOfThematics)
         {
-            Console.WriteLine("Performing base class finding by symbols");
+            int Y = @theme.Y;
+            try
+            {
+                Button SQLButton;
+
+                listOfThematics = listOfThematics.FindAll(x => x.GetDescription() == symbols);
+                foreach (var i in listOfThematics)
+                {
+                    List<Events> Event = listOfEvents.FindAll(p=> p.GetId() == i.GetEventId());
+                    string eventId = default;
+                    foreach (var item in Event)
+                    {
+                        eventId = item.GetName();
+                    }
+                    SQLButton = new Button
+                    {
+                        Size = new Size(@theme.Width, @theme.Height),
+                        Location = new Point(@theme.X, Y),
+                        Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        Text = i.GetDescription() + "\n"+ eventId,
+                        Tag = i
+                    };
+                    theme.MainForm.Controls.Add(SQLButton);
+                    Y += 95;
+                    SQLButton.Click += Click;
+                }
+
+                listOfEvents = listOfEvents.FindAll(p => p.GetName() == symbols);
+                foreach (var i in listOfEvents)
+                {
+                    SQLButton = new Button
+                    {
+                        Size = new Size(@theme.Width, @theme.Height),
+                        Location = new Point(@theme.X, Y),
+                        Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        Text = i.GetName(),
+                        Tag = i
+                    };
+                    theme.MainForm.Controls.Add(SQLButton);
+                    Y += 95;
+                    SQLButton.Click += Click;
+                }
+                
+                if (listOfEvents.Count() == 0 && listOfThematics.Count() == 0)
+                {
+                    Label SQLLabel;
+                    SQLLabel = new Label
+                    {
+                        Size = new Size(@theme.Width, @theme.Height),
+                        Location = new Point(@theme.X, Y),
+                        Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        Text = "На ваш запрос не нашлось результата"
+                    };
+                    theme.MainForm.Controls.Add(SQLLabel);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Clear()
@@ -63,6 +123,14 @@ namespace Diploma.Classes_For_DB_Transaction
                 if (MainForm.Controls[i] is Button)
                 {
                     (MainForm.Controls[i] as Button).Dispose();
+                    i--;
+                }
+            }
+            for (int i = 0; i < MainForm.Controls.Count; i++)
+            {
+                if (MainForm.Controls[i] is Label)
+                {
+                    (MainForm.Controls[i] as Label).Dispose();
                     i--;
                 }
             }

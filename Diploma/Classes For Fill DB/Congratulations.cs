@@ -40,7 +40,8 @@ namespace Diploma.Classes
             while (sqlReader.Read())
             {
                 string CongratulationId = sqlReader["CongratulationId"].ToString();
-                string Text = sqlReader["Text"].ToString();
+                string SQLText = sqlReader["Text"].ToString();
+                string Text = (string)Properties.Resources.ResourceManager.GetObject(@"_" + SQLText[0]);
                 string Author = sqlReader["Author"].ToString();
                 string ThematicId = sqlReader["ThematicId"].ToString();
 
